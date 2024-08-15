@@ -14,7 +14,7 @@ pipeline {
 	stage('docker build') {   // 根据Dockerfile构建镜像
 	  steps {
 	    script {
-          docker.build("${IMAGE_NAME}:${env.BUILD_ID}","--no-cache")
+          docker.build("${IMAGE_NAME}:${env.BUILD_ID}","--no-cache ." )
         }
 	  }
 	}
