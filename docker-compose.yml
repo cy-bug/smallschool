@@ -14,7 +14,7 @@ services:
         ipv4_address: 172.16.10.13
   
   db:
-    image: mysql:5.7
+    image: mysql:8.0.38
     ports:
       - "3306:3306"
     environment:

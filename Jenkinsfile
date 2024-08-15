@@ -5,6 +5,9 @@ pipeline {
     IMAGE_NAME = 'ops-cy-245:9998/library/java-project-school'
     CREDENTIALS_ID = 'harbor-account' // Jenkins 中存储的 Harbor 凭证 ID
   }
+  
+  
+  
   stages {
     stage('Checkout') { // git拉取代码
 	  steps {
@@ -21,6 +24,10 @@ pipeline {
         }
       }
     }
+	
+	
+	
+	
 	stage('Push to Harbor') {  // 上传镜像至harbor
       steps {
         script {  // 'harbor-credentials' 是存储在 Jenkins 中的凭证 ID
