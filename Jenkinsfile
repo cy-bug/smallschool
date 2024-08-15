@@ -11,13 +11,16 @@ pipeline {
 	    git branch: 'master', url: 'https://gitee.com/dy5/smallschool.git'
 	  }
 	}
-	stage('docker build') {   // 根据Dockerfile构建镜像
-	  steps {
-	    script {
-          docker.build("${IMAGE_NAME}:${env.BUILD_ID}","--no-cache ." )
+	stage('Docker Build') { // 根据 Docker Compose 文件构建镜像
+      steps {
+        script {
+          // 使用 Docker Compose 构建镜像
+          withEnv(["BUILD_ID=${env.BUILD_ID}"]) {
+            sh "docker-compose -f docker-compose.yml build"
+		  }
         }
-	  }
-	}
+      }
+    }
 	stage('Push to Harbor') {  // 上传镜像至harbor
       steps {
         script {  // 'harbor-credentials' 是存储在 Jenkins 中的凭证 ID
