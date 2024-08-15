@@ -41,6 +41,7 @@ RUN mkdir -p /root/.m2 && \
     '</settings>' > /root/.m2/settings.xml
 
 # 执行 Maven 构建
+ENV MAVEN_CONFIG=""
 RUN ./mvnw clean package
 
 # 使用一个更小的基础镜像作为运行环境
