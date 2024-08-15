@@ -5,7 +5,12 @@ FROM maven:3.8.5-openjdk-17 AS build
 WORKDIR /app
 
 # 将 pom.xml 和 src 目录复制到工作目录
-COPY . .
+COPY pom.xml .
+COPY src ./src
+COPY mvnw .
+COPY mvnw.cmd .
+COPY .mvn/ .mvn/
+
 
 # 确保 Maven Wrapper 文件具有执行权限
 RUN chmod +x mvnw
