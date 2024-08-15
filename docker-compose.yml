@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  go-project:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ops-cy-245:9998/library/go-project:${BUILD_ID}
+    ports:
+      - "8090:8080"
+    depends_on:
+      - db
+    networks: 
+      app_net:  # 调用下面 networks 定义的 app_net 网络
+        ipv4_address: 172.16.10.13
+  
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: smallschool
+      MYSQL_USER: cy
+      MYSQL_PASSWORD: 12345
+    networks: 
+      app_net:  # 调用下面 networks 定义的 app_net 网络
+        ipv4_address: 172.16.10.11
+      
+    
+    
+networks:
+  app_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+         - subnet: 172.16.10.0/24
