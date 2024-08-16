@@ -14,6 +14,8 @@
     <name>smallschool</name>
     <description>Demo project for Spring Boot</description>
 
+
+
     <properties>
         <java.version>17</java.version>
     </properties>
@@ -31,7 +33,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-			<version>8.4.0</version>
+			<version>5.7.24</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

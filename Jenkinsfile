@@ -6,8 +6,6 @@ pipeline {
     CREDENTIALS_ID = 'harbor-account' // Jenkins 中存储的 Harbor 凭证 ID
   }
   
-  
-  
   stages {
     stage('Checkout') { // git拉取代码
 	  steps {
@@ -17,9 +15,11 @@ pipeline {
 	stage('Docker Build') { // 根据 Docker Compose 文件构建镜像
       steps {
         script {
+		  docker.build("ops-cy-245:9998/library/go-project:${env.BUILD_ID}")
+		
           // 使用 Docker Compose 构建镜像
-          withEnv(["BUILD_ID=${env.BUILD_ID}"]) {
-            sh "docker-compose -f docker-compose.yml build"
+          //withEnv(["BUILD_ID=${env.BUILD_ID}"]) {
+          //  sh "docker-compose -f docker-compose.yml build"
 		  }
         }
       }

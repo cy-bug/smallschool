@@ -42,8 +42,6 @@ RUN mkdir -p /root/.m2 && \
 
 # 执行 Maven 构建
 ENV MAVEN_CONFIG=""
-RUN ./mvnw clean
-RUN ./mvnw dependency:purge-local-repository
 RUN ./mvnw clean package
 
 # 使用一个更小的基础镜像作为运行环境
